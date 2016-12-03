@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html ng-app="test">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>icould</title>
+	</head>
+	<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/angular.js" type="text/javascript" charset="utf-8"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/main.css" />
+
+	<body ng-controller="testCtrl">
+		<div class="main">
+			<!--左面-->
+			<div class="main-left">
+				<div class="logo">
+					<div class="logo-left">
+						<div class="logo-img"></div>
+						<label class="logo-text">提醒事项</label>
+						<div class="logo-cavas"></div>
+					</div>
+					<div class="logo-right" title="新建提醒列表" ng-click="addlist();savedate()"></div>
+				</div>
+				<div class="hasplan">
+					<div class="plan">
+						<label class="title">已计划</label>
+					</div>
+					<div class="row-bottom"></div>
+				</div>
+				<!--<ul id="list">-->
+					<div ng-x>
+						<li ng-repeat="v in list track by $index" ng-click="cuadd($index)" ng-class="{nowclick:v.id==1000}">
+							<div class="list-cir {{v.theme}}"></div>
+							<!--<label class="title">{{v.name}}</label>-->
+							<div class="whif"></div>
+							<div class="row-bottom"></div>
+							<input type="text" ng-model="v.name"/>
+						</li>
+					</div>
+				<!--</ul>-->
+			</div>
+			<!--右面-->
+			<div class="main-right">
+				<div class="found">
+					<div class="found-in">
+						<div class="padding">
+							<input type="text" name="" id="" value="" placeholder="搜索所有提醒"/>
+						</div>
+						<div class="f-img">
+							<div></div>
+						</div>
+					</div>
+					<div class="peason">
+						<div class="peason-in">
+							<label class="p-title">张三</label>
+							<div class="covens"></div>
+						</div>
+						<div class="help">
+							<div class="help-img">
+								<div></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="conten">
+					<div class="con-titile {{list[cu].theme}}">
+						<span>{{list[cu].name}}</span>
+						<span ng-a>选项</span>	
+					</div>
+					<!--完成-->
+					<div class="con-wanc con-2">已完成: <span>{{donum()}}</span> 项
+						<div class="wan-img wan-im"></div>
+						<a href="javascript:;" class="con{{list[cu].theme}}" ng-click="clear();savedate()">清除已完成事项</a>
+					</div>
+					<div class="con-in">
+						<ul id="done2">
+							<li class="good" ng-repeat="v in list[cu].todos track by $index" ng-if="v.state===1">
+								<input type="text" ng-model="v.name"/>
+								<a href="javascript:;" class="con{{list[cu].theme}}" ng-click="delelist($index);savedate()" style="display: none;">删除</a>
+								<div class="con-cri do{{list[cu].theme}}" ng-click="v.state=0;savedate()"></div>
+								<div class="replace replace{{list[cu].theme}}"></div>
+							</li>
+						</ul>
+					</div>
+					<!--未完成-->
+					<div class="con-wanc con-1">未完成: <span>{{notnum()}}</span> 项
+						<div class="wan-img"></div>
+					</div>
+					<div class="con-in">
+						<ul id="done">
+							<li ng-repeat="v in list[cu].todos track by $index" ng-if="v.state===0">
+								<input type="text" ng-model="v.name"/>
+								<a href="javascript:;" class="con{{list[cu].theme}}" ng-click="delelist($index);savedate()" style="display: none;">删除</a>
+								<div class="con-cri not{{list[cu].theme}}" ng-click="v.state=1;savedate()"></div>
+								<div class="replace replace{{list[cu].theme}}"></div>
+							</li>
+							
+						</ul>
+					</div>
+					
+					<div class="con-in">
+						<ul id="done3">
+							<li id="clickadd" style="display: none;">
+								<input type="text"/>
+								<div class="replace2 replace{{list[cu].theme}}"></div>
+							</li>
+							<li id="newwork">新项目...</li>
+						</ul>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<div class="xunxian">
+			<div class="xun-in">
+				<input type="text" ng-model="list[cu].name" class="con{{list[cu].theme}}"/>
+				<h4>列表颜色</h4>
+				<div class="xun-circle">
+					<div class="x-c-in now{{v}}" ng-repeat="v in colors" ng-click="list[cu].theme=v;savedate()">
+						<div class="{{v}}"></div>
+					</div>
+				</div>
+				<div style="clear: both;"></div>
+				<div style="border-bottom: 1px solid #D5D5D5;margin-top: 20px;"></div>
+				<div id="click">
+					<a href="javascript:;" ng-click="dele();savedate()">删除</a>
+					<a href="javascript:;" ng-b>完成</a>
+					<a href="javascript:;" ng-c>取消</a>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/mian.js" type="text/javascript" charset="utf-8"></script>
+
+</html>
